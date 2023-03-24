@@ -9,7 +9,7 @@ public interface NeuralNetwork {
     boolean hasNextLayer();
     boolean hasPrevLayer();
 
-    int networkInputs();
-
-    NetworkInputs weights();
+    double nextWeight();
+    double prevWeight();
+    void setWeight(double newWeight);
 }

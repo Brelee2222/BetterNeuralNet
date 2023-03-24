@@ -10,35 +10,35 @@ public class MachineLearning {
     }
 
     public void learn(NetworkInputs errors, NetworkInputs inputs) {
-        NetworkInputs weights = neuralNetwork.weights();
         neuralNetwork.fromEnd();
-        inputs.fromLast();
+        inputs.fromFirst();
 
         while (neuralNetwork.hasPrevLayer()) {
 
             NetworkInputs nextError = errors.makeNew(neuralNetwork.prevLayer());
 
-            errors.fromLast();
-            while (errors.hasPrev()) {
-                double input = inputs.prev();
-                errors.set(errors.prev() * input * (1 - input));
+            errors.fromFirst();
+            while (errors.hasNext()) {
+                double input = inputs.next();
+                errors.set(errors.next() * input * (1 - input));
             }
 
-            errors.fromLast();
+            errors.fromFirst();
             inputs.mark();
 
-            while (errors.hasPrev()) {
-                double errorSignal = errors.prev();
-                nextError.fromLast();
-                while (nextError.hasPrev()) {
-                    double weight = weights.prev();
-                    nextError.set(nextError.prev() + weight * errorSignal);
+            while (errors.hasNext()) {
+                double errorSignal = errors.next();
+                nextError.fromFirst();
 
-                    weights.set(weight + errorSignal * inputs.prev() * learningRate);
+                while (nextError.hasNext()) {
+                    double weight = neuralNetwork.prevWeight();
+                    nextError.set(nextError.next() + weight * errorSignal);
+
+                    neuralNetwork.setWeight(weight + errorSignal * inputs.next() * learningRate);
                 }
 
-                double weight = weights.prev();
-                weights.set(weight + errorSignal * learningRate);
+                double weight = neuralNetwork.prevWeight();
+                neuralNetwork.setWeight(weight + errorSignal * learningRate);
 
                 inputs.reset();
             }

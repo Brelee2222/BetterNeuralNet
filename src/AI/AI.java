@@ -1,23 +1,25 @@
 package AI;
 
 public class AI {
-    public static NetworkInputs get(NeuralNetwork neuralNetwork, NetworkInputs inputs) {
+    NeuralNetwork neuralNetwork;
+
+    public double calculateInput(NetworkInputs inputs) {
+        inputs.fromFirst();
+        double output = neuralNetwork.nextWeight();
+        while(inputs.hasNext()) {
+            output += neuralNetwork.nextWeight() * inputs.next();
+        }
+        return 1/(1 + Math.exp(-output));
+    }
+
+    public NetworkInputs get(NetworkInputs inputs) {
         neuralNetwork.fromStart();
-        NetworkInputs weights = neuralNetwork.weights();
-        weights.fromFirst();
 
         while(neuralNetwork.hasNextLayer()) {
             NetworkInputs nextInputs = inputs.makeNew(neuralNetwork.nextLayer());
-            nextInputs.fromFirst();
 
             while(nextInputs.hasNext()) {
-                inputs.fromFirst();
-                double output = weights.next();
-                while(inputs.hasNext()) {
-                    output += weights.next() * inputs.next();
-                }
-
-                nextInputs.setNext(1/(1 + Math.exp(-output)));
+                nextInputs.setNext(calculateInput(inputs));
             }
 
             inputs = nextInputs;
