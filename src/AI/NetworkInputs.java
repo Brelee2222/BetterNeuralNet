@@ -13,11 +13,6 @@ public interface NetworkInputs {
     double next();
 
     /**
-     * @return the prev input, but doesn't increment
-     */
-    double prev();
-
-    /**
      * starts the inputs at the first input of inputs. pairs with next and hasNext
      */
     void fromFirst();

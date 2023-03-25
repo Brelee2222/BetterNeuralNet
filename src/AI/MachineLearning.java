@@ -13,13 +13,15 @@ public class MachineLearning {
         neuralNetwork.fromEnd();
         inputs.fromFirst();
 
+        NetworkInputs nextError;
         while (neuralNetwork.hasPrevLayer()) {
 
-            NetworkInputs nextError = errors.makeNew(neuralNetwork.prevLayer());
+            nextError = errors.makeNew(neuralNetwork.prevLayer());
 
             errors.fromFirst();
+            double input;
             while (errors.hasNext()) {
-                double input = inputs.next();
+                input = inputs.next();
                 errors.set(errors.next() * input * (1 - input));
             }
 
@@ -30,15 +32,15 @@ public class MachineLearning {
                 double errorSignal = errors.next();
                 nextError.fromFirst();
 
+                double weight;
                 while (nextError.hasNext()) {
-                    double weight = neuralNetwork.prevWeight();
+                    weight = neuralNetwork.prevWeight();
                     nextError.set(nextError.next() + weight * errorSignal);
 
                     neuralNetwork.setWeight(weight + errorSignal * inputs.next() * learningRate);
                 }
 
-                double weight = neuralNetwork.prevWeight();
-                neuralNetwork.setWeight(weight + errorSignal * learningRate);
+                neuralNetwork.setWeight(neuralNetwork.prevWeight() + errorSignal * learningRate);
 
                 inputs.reset();
             }

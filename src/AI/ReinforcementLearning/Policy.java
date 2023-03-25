@@ -4,5 +4,5 @@ import AI.NetworkInputs;
 
 public interface Policy {
     void modifyAction(NetworkInputs action);
-    void modifyErrors(NetworkInputs errors);
+    NetworkInputs getErrors(NetworkInputs action, NetworkInputs newAction, double error);
 }
