@@ -1,8 +1,8 @@
 package AI.ReinforcementLearning;
 
-import AI.MachineLearning;
-import AI.NetworkInputs;
-import AI.NeuralNetwork;
+import AI.utils.MachineLearning;
+import AI.utils.NetworkInputs;
+import AI.utils.NeuralNetwork;
 
 public interface Agent {
     NeuralNetwork network();

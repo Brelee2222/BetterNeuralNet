@@ -1,6 +1,6 @@
 package AI.ReinforcementLearning;
 
-import AI.NetworkInputs;
+import AI.utils.NetworkInputs;
 
 public interface Policy {
     void modifyAction(NetworkInputs action);

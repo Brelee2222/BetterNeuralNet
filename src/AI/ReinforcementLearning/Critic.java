@@ -1,8 +1,7 @@
 package AI.ReinforcementLearning;
 
-import AI.MachineLearning;
-import AI.NetworkInputs;
-import AI.NeuralNetwork;
+import AI.utils.MachineLearning;
+import AI.utils.NetworkInputs;
 
 public interface Critic {
     double getPredictedReward(NetworkInputs state);

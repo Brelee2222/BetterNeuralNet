@@ -1,9 +1,9 @@
 package AI.ReinforcementLearning;
 
-import AI.MachineLearning;
-import AI.NetworkInputs;
+import AI.utils.MachineLearning;
+import AI.utils.NetworkInputs;
 
-public class RLearning {
+public class ReinforcementLearning {
     Critic critic;
     Agent agent;
 

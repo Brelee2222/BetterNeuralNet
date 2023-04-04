@@ -1,4 +1,4 @@
-package AI;
+package AI.utils;
 
 public class AI {
     NeuralNetwork neuralNetwork;
