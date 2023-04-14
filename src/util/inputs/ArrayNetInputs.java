@@ -1,4 +1,4 @@
-package io.github.brelee2222.mcsurvivalplayer.ai.ml.util.inputs;
+package util.inputs;
 
 public class ArrayNetInputs implements NetworkInputs {
     double[] inputs;

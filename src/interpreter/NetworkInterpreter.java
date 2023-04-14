@@ -1,6 +1,6 @@
-package io.github.brelee2222.mcsurvivalplayer.ai.ml.interpreter;
+package interpreter;
 
-import io.github.brelee2222.mcsurvivalplayer.ai.ml.util.inputs.NetworkInputs;
+import util.inputs.NetworkInputs;
 
 public interface NetworkInterpreter {
     public double calculateInput(NetworkInputs inputs);

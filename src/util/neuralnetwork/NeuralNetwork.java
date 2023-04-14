@@ -1,4 +1,4 @@
-package io.github.brelee2222.mcsurvivalplayer.ai.ml.util.neuralnetwork;
+package util.neuralnetwork;
 
 public interface NeuralNetwork {
     public void fromStart();

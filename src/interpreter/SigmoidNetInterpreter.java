@@ -1,7 +1,7 @@
-package io.github.brelee2222.mcsurvivalplayer.ai.ml.interpreter;
+package interpreter;
 
-import io.github.brelee2222.mcsurvivalplayer.ai.ml.util.inputs.NetworkInputs;
-import io.github.brelee2222.mcsurvivalplayer.ai.ml.util.neuralnetwork.NeuralNetwork;
+import util.inputs.NetworkInputs;
+import util.neuralnetwork.NeuralNetwork;
 
 public class SigmoidNetInterpreter implements NetworkInterpreter {
     NeuralNetwork neuralNetwork;

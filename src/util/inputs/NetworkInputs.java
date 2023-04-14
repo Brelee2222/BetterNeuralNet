@@ -1,5 +1,4 @@
-package io.github.brelee2222.mcsurvivalplayer.ai.ml.util.inputs;
-
+package util.inputs;
 public interface NetworkInputs {
     public void fromFirst();
     public void write(double val);
