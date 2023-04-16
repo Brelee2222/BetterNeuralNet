@@ -12,9 +12,9 @@ public class MachineLearning {
         this.neuralNetwork = neuralNetwork;
     }
 
-    public void backpropagation(NetworkInputs errors, NetworkInputs inputs) {
+    public void backpropagation(NetworkInputs errors, NetworkInputs neuronOutputs) {
         neuralNetwork.fromEnd();
-        inputs.fromFirst();
+        neuronOutputs.fromFirst();
 
         NetworkInputs nextError;
         while (neuralNetwork.hasPrevLayer()) {
@@ -24,12 +24,12 @@ public class MachineLearning {
             errors.fromFirst();
             double input;
             while (errors.hasNext()) {
-                input = inputs.readNext();
+                input = neuronOutputs.readNext();
                 errors.write(errors.readNext() * input * (1 - input));
             }
 
             errors.fromFirst();
-            inputs.mark();
+            neuronOutputs.mark();
 
             while (errors.hasNext()) {
                 double errorSignal = errors.readNext();
@@ -40,12 +40,12 @@ public class MachineLearning {
                     weight = neuralNetwork.prevWeight();
                     nextError.write(nextError.readNext() + weight * errorSignal);
 
-                    neuralNetwork.setWeight(weight + errorSignal * inputs.readNext() * learningRate);
+                    neuralNetwork.setWeight(weight + errorSignal * neuronOutputs.readNext() * learningRate);
                 }
 
                 neuralNetwork.setWeight(neuralNetwork.prevWeight() + errorSignal * learningRate);
 
-                inputs.reset();
+                neuronOutputs.reset();
             }
 
             errors = nextError;
